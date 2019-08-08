@@ -1,0 +1,46 @@
+.cocos_blocks_list ul li {
+	 list-style:circle;
+	 display: block;
+	 clear:both;
+	 
+}
+
+.blockchain_class ul li span {
+	display: block;
+	margin-left: 5px;
+}
+.block_height1 {
+	/* font-size: 12px; */
+	/* display:block; */
+	width: 80px;
+	float: left;
+}
+.block_id1 {
+	/* display:block; */
+	float: left;
+	/* font-weight: bold; */
+}
+/* .block_witness {
+	 
+	width: 60px;
+	margin-left: 3px;
+	float: left;
+} */
+.block_trx_count1
+{
+	/* display:block; */
+	width: 30px;
+	/* margin-left: 3px; */
+	float: left;
+}
+.block_time {
+	/* display:block; */
+	text-align: right;
+}
+
+.tran_block_id {
+	width: 80px;
+}
+.tran_type_name {
+	width:80px;
+}

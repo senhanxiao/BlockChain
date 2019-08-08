@@ -1,0 +1,63 @@
+{
+	"name": "BlockChain",
+	"author": [
+		"搞枫搞雨"
+	],
+	"version": "0.1.0",
+	"url": "https://github.com/senhanxiao/BlockChain",
+	"descriptionmsg": "blockchain-desc",
+	"license-name": "MIT",
+	"type": "parserhook",
+	"requires": {
+		"MediaWiki": ">= 1.33.0"
+	},
+	"AutoloadClasses": {
+		"BlockChainHooks": "includes/BlockChainHooks.php",
+		"BlockChain": "includes/BlockChain.php"
+	},
+	 
+	"config": {
+		
+	},
+	"Hooks": {
+		"ParserFirstCallInit": [
+			"BlockChainHooks::onParserFirstCallInit"
+		]
+     },
+	"MessagesDirs": {
+		"BlockChain": [
+			"i18n"
+		]
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "resources",
+		"remoteExtPath": "BlockChain/resources"
+	},
+	"ResourceModules": {
+		"ext.blockChain.styles": {
+			"dependencies": [],
+			"messages": [],
+			"styles":  "ext.blockChain.styles.css",
+			"scripts": [],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		},
+		"ext.blockChain": {
+			"scripts":[
+				"bcx.min.js",
+			 
+				"ext.blockChain.js"
+			],
+			"dependencies": [
+				"jquery.throttle-debounce"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		}
+	},
+	"manifest_version": 1
+}
