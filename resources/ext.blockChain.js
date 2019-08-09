@@ -24,6 +24,64 @@
 	};
 	var blocks = [];
 	var operations = [];
+    
+	try{
+		if(typeof(Storage) != "undefined"){
+			blocks = localStorage.getItem("blocks");
+			if(blocks == null) {
+				blocks=[];
+			}
+			else{
+				blocks = JSON.parse(blocks);
+				var blocks_html="<ul>";
+					blocks.forEach(function(block){
+						var {block_height,block_id,trx_count,witness_name,time} = block;
+						blocks_html+="<li><span class='block_height'>"+block_height +"</span><span class='block_id'>"+block_id+"</span>"+
+										  "<span class='block_witness_name'>"+witness_name+"</span>"+ 
+										  "<span class='block_trx_count'>"+trx_count+"</span> "+
+										  "<span class='block_time'>"+new Date(time).format('HH:mm:ss')+"</span>"+
+										  "<div style='clear:both;'><\/div>"+
+									  "</li>";
+					});
+				
+					blocks_html+="</ul>";
+				$(".cocos_blocks_list").html(blocks_html);	
+			}
+		}
+	}
+	catch {
+		blocks=[];
+	}
+  	try{
+
+
+		if(typeof(Storage) != "undefined"){
+	
+					operations = localStorage.getItem("operations");
+					if(operations == null) {
+						operations=[];
+					}
+					else{
+						operations = JSON.parse(operations);
+						var operations_html="<ul>";
+						operations.forEach(function(item,index){
+							
+							operations_html+="<li>"+
+							"<span class=\"tran_block_num\">"+item.block_num+"</span>"+
+							"<span class=\"tran_type_name\">"+item.type_name+"</span>"+
+							"<span class=\"tran_operations_text\">"+item.parse_operations_text+"</span>"+
+							"<span class=\"tran_date\">"+new Date(item.date).format('HH:mm:ss')+"</span><div style=\"clear:both;\"></div></li>";
+	});
+						operations_html+="</ul>";
+						$(".cocos_transaction_list").html(operations_html);
+					}
+			}
+	}
+	catch{
+		operations=[];
+	}
+	 
+
 	var bcx=new BCX(_configParams); 
 	bcx.init({
 		real_sub:true
@@ -39,17 +97,29 @@
 					if(blocks.length>10){
 						blocks.length=10; 
 					}
-					var blocks_html="<table style=\"width:100%\">";
+						if(typeof(Storage) != "undefined"){
+					localStorage.setItem("blocks", JSON.stringify(blocks));}
+					var blocks_html="<ul>";
 					blocks.forEach(function(block){
 						var {block_height,block_id,trx_count,witness_name,time} = block;
-						// blocks_html+=`<li> <span class="block_height">${block_height}</span> <span class="block_id">${block_id}[${witness_name}]</span> <span class="block_time">${time}</span> </li>`;
-					
-						blocks_html+=`<tr> <td class="block_height">${block_height}</td> <td class="block_id">${block_id}</td><td>${witness_name}</td><td>${trx_count}</td> <td class="block_time">${time}</td> </tr>`;
-		
+						// blocks_html+=`<li> 
+						//                   <span class="block_height">${block_height}</span> 
+						// 				  <span class="block_id">${block_id}</span> 
+						// 				  <span class="block_witness_name">${witness_name}</span> 
+						// 				  <span class="block_trx_count">${trx_count}</span> 
+						// 				  <span class="block_time">${new Date(time).format('HH:mm:ss')}</span>
+						// 				  <div style=\"clear:both;\"><\/div>
+						// 			  </li>`;
+						blocks_html+="<li><span class='block_height'>"+block_height +"</span><span class='block_id'>"+block_id+"</span>"+
+										  "<span class='block_witness_name'>"+witness_name+"</span>"+ 
+										  "<span class='block_trx_count'>"+trx_count+"</span> "+
+										  "<span class='block_time'>"+new Date(time).format('HH:mm:ss')+"</span>"+
+										  "<div style='clear:both;'><\/div>"+
+									  "</li>";
 					});
 				
-					blocks_html+="</table>";
-					$(".cocos_blocks_list").html(blocks_html);	
+					blocks_html+="</ul>";
+					$(".cocos_blocks_list").html(blocks_html);		
 				}
 			}
 		     });
@@ -63,19 +133,28 @@
 					// console.info("subscribeToChainTranscation res",res);
 					if(res.code==1){
 						operations.unshift(res.data);
-						if( operations.length>5){
-							operations.length=5;
+						if( operations.length>10){
+							operations.length=10;
 						}
-						var operations_html="<table style=\"width:100%\">";
-						
+							if(typeof(Storage) != "undefined"){
+						localStorage.setItem("operations",JSON.stringify(operations));}
+						var operations_html="<ul>";
 						operations.forEach(function(item,index){
-							operations_html+="<tr><td class=\"tran_block_id\">"+item.block_num + "</td><td class=\"tran_type_name\">"+item.type_name+"</td><td>"+item.parse_operations_text + "</td><td>"+item.parse_operations.fee + "</td><td>"+item.date + "</td></tr>";
-							// operations_html+=`<tr><td>${item.block_num}</td>  <td>${item.type_name}</td> <td>${item.parse_operations_text}</td> <td>${item.parse_operations.fee}</td> <td>${item.date}</td></tr>`;
-							// operations_html+=`<li>${item.block_num}${item.type_name}${item.parse_operations_text}${item.parse_operations.fee}${item.date}</li>`;
-							// $(selector).appendChild(tr);
-							// if(item.raw_data.new_options) $("."+op_class+" .new_options div").JSONView(item.raw_data.new_options,{ collapsed: true })
+							// operations_html+=`<li>
+							// <span class="tran_block_num">${item.block_num}<\/span>
+							// <span class="tran_type_name">${item.type_name}<\/span>
+							// <span class="tran_operations_text">${item.parse_operations_text}<\/span>
+							// <span class="tran_date">${new Date(item.date).format('HH:mm:ss')}<\/span><div style=\"clear:both;\"><\/div><\/li>`;
+						
+							operations_html+="<li>"+
+							"<span class=\"tran_block_num\">"+item.block_num+"</span>"+
+							"<span class=\"tran_type_name\">"+item.type_name+"</span>"+
+							"<span class=\"tran_operations_text\">"+item.parse_operations_text+"</span>"+
+							"<span class=\"tran_date\">"+new Date(item.date).format('HH:mm:ss')+"</span><div style=\"clear:both;\"></div></li>";
+
 						});
-						operations_html+="</table>";
+					 
+						operations_html+="</ul>";
 						$(".cocos_transaction_list").html(operations_html);
 						
 					}
