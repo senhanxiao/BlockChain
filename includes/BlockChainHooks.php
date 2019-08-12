@@ -48,17 +48,17 @@ class BlockChainHooks {
 		switch ( $type ) {
 			case 0:
 				$output = "<div class=\"cocos_blocks_list\" id=\"blockinfo\">";
-				$output .= $input;
+				// $output .= $input;
 				$output .= "</div>";
 				break;
 			case 1:
 				$output = "<div class=\"cocos_transaction_list\" id=\"transactioninfo\">";
-				$output .= $input;
+				// $output .= $input;
 				$output .= "</div>";
 				break;
 			default:
 				$output = "<div class=\"cocos_blocks_list\" id=\"blockinfo\">";
-				$output .= $input;
+				// $output .= $input;
 				$output .= "</div>";
 		}
 		return $output;
