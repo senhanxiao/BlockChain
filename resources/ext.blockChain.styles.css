@@ -71,10 +71,7 @@
 	}
 	.tran_operations_text {
 		width:300px;
-		/* text-align: left;
-		overflow: hidden;
-		text-overflow:ellipsis;
-		white-space: nowrap; */
+		 
 	}
 }
 
@@ -123,23 +120,33 @@
    }
 }
 
-/* @media screen and (max-width: 800px) {
+@media screen and (max-width: 1024px) {
 	 
 	.block_trx_count,.block_witness_name{
 		display: none;
-	 
 	}
 	.block_id {
-		display: block;
-		width:200px;
-		text-align: left;
-		overflow: hidden;
-		text-overflow:ellipsis;
-		white-space: nowrap;
-		direction: rtl;
+		width:180px;
 	}
-} */
- 
+
+	.block_time,.tran_date {
+		width: 80px;
+		float: right;
+	}
+	.tran_type_name {
+		display: none;
+	}
+	.tran_operations_text{
+		width: 180px;
+	}
+	.cocos_blocks_list ul li,.cocos_transaction_list ul li {
+		margin-top: 5px;
+		clear:both;
+   }
+}
+
+
+
 
 
 

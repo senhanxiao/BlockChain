@@ -47,7 +47,7 @@ class BlockChainHooks {
 	 
 		switch ( $type ) {
 			case 0:
-				$output = "<div class=\"cocos_blocks_list\" id=\"blockinfo\">";
+				$output = "<div class=\"cocos_blocks_list\" id=\"blockinfo\" data-chainid=\"".$args["chainid"]."\">";
 				// $output .= $input;
 				$output .= "</div>";
 				break;

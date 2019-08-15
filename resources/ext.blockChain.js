@@ -102,14 +102,6 @@
 					var blocks_html="<ul>";
 					blocks.forEach(function(block){
 						var {block_height,block_id,trx_count,witness_name,time} = block;
-						// blocks_html+=`<li> 
-						//                   <span class="block_height">${block_height}</span> 
-						// 				  <span class="block_id">${block_id}</span> 
-						// 				  <span class="block_witness_name">${witness_name}</span> 
-						// 				  <span class="block_trx_count">${trx_count}</span> 
-						// 				  <span class="block_time">${new Date(time).format('HH:mm:ss')}</span>
-						// 				  <div style=\"clear:both;\"><\/div>
-						// 			  </li>`;
 						blocks_html+="<li><span class='block_height'>"+block_height +"</span><span class='block_id'><a href='http://cocos-terminal.com#block-trx/"+block_height+"' target='_blank'>"+block_id+"</a></span>"+
 										  "<span class='block_witness_name'>"+witness_name+"</span>"+ 
 										  "<span class='block_trx_count'>"+trx_count+"</span> "+
@@ -140,12 +132,7 @@
 						localStorage.setItem("operations",JSON.stringify(operations));}
 						var operations_html="<ul>";
 						operations.forEach(function(item,index){
-							// operations_html+=`<li>
-							// <span class="tran_block_num">${item.block_num}<\/span>
-							// <span class="tran_type_name">${item.type_name}<\/span>
-							// <span class="tran_operations_text">${item.parse_operations_text}<\/span>
-							// <span class="tran_date">${new Date(item.date).format('HH:mm:ss')}<\/span><div style=\"clear:both;\"><\/div><\/li>`;
-						 
+			
 							operations_html+="<li>"+
 							"<span class=\"tran_block_num\">"+item.block_num+"</span>"+
 							"<span class=\"tran_type_name\">"+item.type_name+"</span>"+
