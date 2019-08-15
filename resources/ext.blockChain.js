@@ -18,7 +18,7 @@
 		  }
 		], 
 		faucet_url:"http://47.93.62.96:8041",
-		auto_reconnect:false,
+		auto_reconnect:true,
 		real_sub:true,
 		check_cached_nodes_data:false
 	};
